@@ -4,6 +4,10 @@ import { Admin, Resource } from 'react-admin'
 import dataProvider from './providers/dataProvider'
 import { getCreateComponent, getEditComponent, getListComponent, getShowComponent } from './utils/utils'
 
+import Dashboard from './ra-customs/Dashboard'
+import Layout from './ra-customs/Layout'
+import customRoutes from './ra-customs/customRoutes'
+
 import './App.css'
 
 import { typeSettings } from './providers/dummyData'
@@ -26,6 +30,9 @@ const App: React.FC = () => {
     return (
         <Admin
             dataProvider={dataProvider}
+            dashboard={Dashboard}
+            layout={Layout}
+            customRoutes={customRoutes}
         >
             {resources}
         </Admin>

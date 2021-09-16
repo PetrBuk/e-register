@@ -11,7 +11,6 @@ const dataProvider: DataProvider = {
         return new Promise(async (resolve, reject) => {
             await sleep(200)
             const data = articles.filter(obj => obj.type === resource)
-            console.log(resource, data)
             return resolve({ data, total: 10 })
         })
     },
