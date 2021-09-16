@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Admin, Resource } from 'react-admin'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+import dataProvider from './providers/dataProvider'
+import { getCreateComponent, getEditComponent, getListComponent, getShowComponent } from './utils/utils'
+
+import './App.css'
+
+import { typeSettings } from './providers/dummyData'
+
+const App: React.FC = () => {
+
+    const resources = typeSettings.map((obj, key) => {
+        return (
+            <Resource 
+                key={key}
+                name={obj.name}
+                list={getListComponent(obj)}
+                show={getShowComponent(obj)}
+                edit={getEditComponent(obj)}
+                create={getCreateComponent(obj)}
+            />
+        )
+    })
+
+    return (
+        <Admin
+            dataProvider={dataProvider}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+            {resources}
+        </Admin>
+    );
 }
 
 export default App;
