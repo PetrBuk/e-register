@@ -1,32 +1,49 @@
 import React from 'react'
 import { Card, CardContent } from '@material-ui/core'
-import AddIcon from '@material-ui/icons/Add'
-import { Title, Create, SimpleForm, TextInput, Toolbar, Button } from 'react-admin'
+import {
+    Title, Create, SimpleForm, TextInput, SaveButton,
+    Toolbar, ArrayInput, SimpleFormIterator
+} from 'react-admin'
+import { useForm } from 'react-final-form'
+import AttributeInput from './AttributesInputs/AttributeInput'
 
 const CreateToolbar = (props: any) => {
-    const customSubmit = (e:any) => {
-        e.preventDefault();
-        console.log(e);
+
+    const form = useForm();
+
+    const preventSubmit = (e: any) => {
+            e.preventDefault()
+        return Promise.resolve(undefined as any)
     }
+
+    const handleSubmit = () => {
+        console.log(form.getState().values)
+    }
+
     return (
-        <Toolbar {...props} handleSubmit={customSubmit} >
-            <Button disabled={props.pristine} label='Vytvořit'>
-                <AddIcon/>
-            </Button>
+        <Toolbar handleSubmit={preventSubmit}>
+            <SaveButton
+                disabled={props.pristine}
+                handleSubmitWithRedirect={handleSubmit}
+            />
         </Toolbar>
     )
 }
 
-const AddType = () => {
+const AddType: React.FC = () => {
 
     return (
         <Card>
             <Title title='Přidat nový typ' />
             <CardContent>
-                Tady bude formulář pro vytvoření nového typu
-                <Create basePath='/typesSettings' resource='typesSettings'>
-                    <SimpleForm toolbar={<CreateToolbar/>}>
-                        <TextInput source='name'/>
+                <Create basePath='/typesSettings' resource='typesSettings' title=' '>
+                    <SimpleForm toolbar={<CreateToolbar />} redirect={false}>
+                        <TextInput source='name' required/>
+                        <ArrayInput source='attributes'>
+                            <SimpleFormIterator>
+                                <AttributeInput />
+                            </SimpleFormIterator>
+                        </ArrayInput>
                     </SimpleForm>
                 </Create>
             </CardContent>

@@ -1,0 +1,37 @@
+{
+    "resources": {
+
+    },
+    "createType": {
+        "attributes": {
+            "name": "Název",
+            "type": "Typ"
+        },
+        "types": {
+            "number": "Číslo",
+            "string": "Text",
+            "boolean": "Boolean"
+        },
+        "settings": {
+            "required": "Povinné pole",
+            "unique": "Unikátní",
+            "defaultValue": "Výchozí hodnota",
+            "richText": "Dlouhý text",
+            "regExp": "Regulární výraz",
+            "minLength": "Minimální délka",
+            "maxLength": "Maximální délka",
+            "min": "Minimální hodnota",
+            "max": "Maximální hodnota",
+            "type": "Typ",
+            "reference": "Název reference",
+            "multiple": "Vícero"
+        },
+        "text": {
+            "addAttributeTitle": "Přidat atribut",
+            "addSettings": "Nastavit"
+        }
+    },
+    "ra.navigation.skip_nav": "Přeskočit k obsahu",
+    "ra.navigation.page_rows_per_page": "Řádků na stránce",
+    "ra.action.unselect": "Zrušit výběr"
+}

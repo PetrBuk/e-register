@@ -1,23 +1,24 @@
 import React from 'react'
 import { Admin, Resource } from 'react-admin'
 
-import dataProvider from './providers/dataProvider'
-import { getCreateComponent, getEditComponent, getListComponent, getShowComponent } from './utils/utils'
-
 import Dashboard from './ra-customs/Dashboard'
 import Layout from './ra-customs/Layout'
 import customRoutes from './ra-customs/customRoutes'
 
-import './App.css'
-
+import dataProvider from './providers/dataProvider'
+import i18nProvider from './providers/I18nProvider'
 import { typeSettings } from './providers/dummyData'
+
+import { getCreateComponent, getEditComponent, getListComponent, getShowComponent } from './utils/utils'
+
+import './App.css'
 
 const App: React.FC = () => {
 
-    const resources = typeSettings.map((obj, key) => {
+    const resources = typeSettings.map((obj) => {
         return (
             <Resource 
-                key={key}
+                key={obj.name}
                 name={obj.name}
                 list={getListComponent(obj)}
                 show={getShowComponent(obj)}
@@ -27,12 +28,15 @@ const App: React.FC = () => {
         )
     })
 
+    resources.push(<Resource key='typesSettings' name='typesSettings' />)
+
     return (
         <Admin
             dataProvider={dataProvider}
             dashboard={Dashboard}
             layout={Layout}
             customRoutes={customRoutes}
+            i18nProvider={i18nProvider}
         >
             {resources}
         </Admin>
