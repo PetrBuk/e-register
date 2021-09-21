@@ -1,11 +1,6 @@
 import React from 'react'
 import { BooleanInput } from 'react-admin'
 
-export type BooleanAttributeSettings = {
-    required?: boolean,
-    defaultValue?: number,
-}
-
 const BooleanAttribute: React.FC<any> = (props: any) => {
     return (
         <>

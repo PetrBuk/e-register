@@ -5,14 +5,16 @@ import {
     Toolbar, ArrayInput, SimpleFormIterator
 } from 'react-admin'
 import { useForm } from 'react-final-form'
+
 import AttributeInput from './AttributesInputs/AttributeInput'
+import AuthInput from './AttributesInputs/AuthInput'
 
 const CreateToolbar = (props: any) => {
 
     const form = useForm();
 
     const preventSubmit = (e: any) => {
-            e.preventDefault()
+        e.preventDefault()
         return Promise.resolve(undefined as any)
     }
 
@@ -30,7 +32,7 @@ const CreateToolbar = (props: any) => {
     )
 }
 
-const AddType: React.FC = () => {
+const AddType: React.FC<any> = () => {
 
     return (
         <Card>
@@ -38,12 +40,13 @@ const AddType: React.FC = () => {
             <CardContent>
                 <Create basePath='/typesSettings' resource='typesSettings' title=' '>
                     <SimpleForm toolbar={<CreateToolbar />} redirect={false}>
-                        <TextInput source='name' required/>
+                        <TextInput source='name' required />
                         <ArrayInput source='attributes'>
                             <SimpleFormIterator>
                                 <AttributeInput />
                             </SimpleFormIterator>
                         </ArrayInput>
+                        <AuthInput source='auth' type='type' />
                     </SimpleForm>
                 </Create>
             </CardContent>

@@ -1,12 +1,6 @@
 import React from 'react'
 import { BooleanInput, TextInput } from 'react-admin'
 
-export type ReferenceAttributeSettings = {
-    reference: string | any,
-    required?: boolean,
-    defaultValue?: number,
-}
-
 const ReferenceAttribute: React.FC<any> = (props: any) => {
     return (
         <>

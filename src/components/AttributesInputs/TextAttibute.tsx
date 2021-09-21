@@ -1,19 +1,7 @@
 import React from 'react'
 import { BooleanInput, TextInput, NumberInput } from 'react-admin'
 
-export type TextAtributeSettings = {
-    required?: boolean,
-    unique?: boolean,
-    defaultValue?: string,
-    richText?: boolean,
-    validation?: {
-        minLength?: number,
-        maxLength?: number,
-        regExp?: string
-    }
-}
-
-const TextAttribute: React.FC = (props: any) => {
+const TextAttribute: React.FC<any> = (props: any) => {
 
     return (
         <>

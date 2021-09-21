@@ -3,7 +3,7 @@ import { Create, SimpleForm, TextInput, ArrayInput, SimpleFormIterator } from 'r
 
 import AttributeInput from './AttributesInputs/AttributeInput'
 
-const CreateTypesSettings: React.FC = (props: any) => {
+const CreateTypesSettings: React.FC<any> = (props: any) => {
     return (
         <Create {...props}>
             <SimpleForm>

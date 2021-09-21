@@ -2,19 +2,6 @@ import React from 'react'
 import { BooleanInput, SelectInput, DateTimeInput } from 'react-admin'
 import { useField, useForm } from 'react-final-form'
 
-export type DatetimeAttributeSettings = {
-    required?: boolean,
-    unique?: boolean,
-    defaultValue?: number,
-    type?: 'date' | 'time' | 'datetime',
-    format?: any,
-    validation?: {
-        min?: number,
-        max?: number
-    }
-
-}
-
 const DatetimeAttribute: React.FC<any> = (props: any) => {
 
     const form = useForm()

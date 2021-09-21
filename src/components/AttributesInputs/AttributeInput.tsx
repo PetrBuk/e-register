@@ -9,6 +9,7 @@ import NumberAttribute from './NumberAttribute'
 import BooleanAttribute from './BooleanAttribute'
 import DatetimeAttribute from './DatetimeAttribute'
 import ReferenceAttribute from './ReferenceAttribute'
+import AuthInput from './AuthInput'
 
 const AttributeInput: React.FC<any> = (props: any) => {
 
@@ -18,36 +19,35 @@ const AttributeInput: React.FC<any> = (props: any) => {
 
     const [open, setOpen] = useState(false)
 
-    console.log(field.input.value)
-
     const onClose = () => {
         setOpen(false)
     }
 
     return (
         <>
-            <TextInput {...props} source={`${props.source}.name`} label='createType.attributes.name' required/>
-            <TypeInput {...props} source={`${props.source}.type`} label='createType.attributes.type' required/>
+            <TextInput {...props} source={`${props.source}.name`} label='createType.attributes.name' required />
+            <TypeInput {...props} source={`${props.source}.type`} label='createType.attributes.type' required />
             <Button label='createType.text.addSettings' onClick={() => setOpen(true)}>
-                <Tune/>
+                <Tune />
             </Button>
             <Dialog open={open} onClose={onClose} fullWidth maxWidth='md'>
                 <DialogTitle>{translate('createType.text.addAttributeTitle')}</DialogTitle>
                 <DialogContent>
-                    <TextInput {...props} source={`${props.source}.name`} label='createType.attributes.name' required/>
-                    <TypeInput {...props} source={`${props.source}.type`} label='createType.attributes.type' required/>
+                    <TextInput {...props} source={`${props.source}.name`} label='createType.attributes.name' required />
+                    <TypeInput {...props} source={`${props.source}.type`} label='createType.attributes.type' required />
                     {field.input.value.type === 'text' && <TextAttribute {...props} source={`${props.source}.settings`} />}
                     {field.input.value.type === 'number' && <NumberAttribute {...props} source={`${props.source}.settings`} />}
                     {field.input.value.type === 'boolean' && <BooleanAttribute {...props} source={`${props.source}.settings`} />}
                     {field.input.value.type === 'datetime' && <DatetimeAttribute {...props} source={`${props.source}.settings`} />}
                     {field.input.value.type === 'reference' && <ReferenceAttribute {...props} source={`${props.source}.settings`} />}
+                    <AuthInput type='attribute' />
                 </DialogContent>
                 <DialogActions>
-                    <Button label='ra.action.cancel' onClick={onClose}>
+                    {/*<Button label='ra.action.cancel' onClick={onClose}>
                         <Close/>
-                    </Button>
+    </Button>*/}
                     <Button label='ra.action.edit' onClick={onClose}>
-                        <Save/>
+                        <Save />
                     </Button>
                 </DialogActions>
             </Dialog>
@@ -64,7 +64,7 @@ const TypeInput = (props: any) => {
         { id: 'number', name: 'Number' },
         { id: 'boolean', name: 'Boolean' },
         { id: 'datetime', name: 'Datetime' },
-        { id: 'reference', name: 'Reference'}
+        { id: 'reference', name: 'Reference' }
     ]
 
     return (

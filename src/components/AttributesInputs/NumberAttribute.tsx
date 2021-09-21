@@ -1,18 +1,6 @@
 import React from 'react'
 import { BooleanInput, NumberInput } from 'react-admin'
 
-export type NumberAttributeSettings = {
-    required?: boolean,
-    unique?: boolean,
-    defaultValue?: number,
-    format?: any,
-    validation?: {
-        min?: number,
-        max?: number
-    }
-
-}
-
 const NumberAttribute: React.FC<any> = (props: any) => {
     return (
         <>

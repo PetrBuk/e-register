@@ -6,6 +6,7 @@ import Layout from './ra-customs/Layout'
 import customRoutes from './ra-customs/customRoutes'
 
 import dataProvider from './providers/dataProvider'
+import authProvider from './providers/authProvider'
 import i18nProvider from './providers/I18nProvider'
 import { typeSettings } from './providers/dummyData'
 
@@ -33,10 +34,11 @@ const App: React.FC = () => {
     return (
         <Admin
             dataProvider={dataProvider}
+            authProvider={authProvider}
+            i18nProvider={i18nProvider}
             dashboard={Dashboard}
             layout={Layout}
             customRoutes={customRoutes}
-            i18nProvider={i18nProvider}
         >
             {resources}
         </Admin>
