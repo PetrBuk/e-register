@@ -19,6 +19,10 @@ const AttributeInput: React.FC<any> = (props: any) => {
 
     const [open, setOpen] = useState(false)
 
+    const onCancel = () => {
+        // ToDo: Get default value (Record | custom props | useField)
+    }
+
     const onClose = () => {
         setOpen(false)
     }
@@ -43,9 +47,9 @@ const AttributeInput: React.FC<any> = (props: any) => {
                     <AuthInput type='attribute' />
                 </DialogContent>
                 <DialogActions>
-                    {/*<Button label='ra.action.cancel' onClick={onClose}>
-                        <Close/>
-    </Button>*/}
+                    <Button label='ra.action.cancel' onClick={onCancel}>
+                        <Close />
+                    </Button>
                     <Button label='ra.action.edit' onClick={onClose}>
                         <Save />
                     </Button>

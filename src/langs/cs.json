@@ -24,7 +24,25 @@
             "max": "Maximální hodnota",
             "type": "Typ",
             "reference": "Název reference",
-            "multiple": "Vícero"
+            "multiple": "Vícero",
+            "auth": {
+                "baseRestrict": "Základní omezení",
+                "customRestrict": "Rozšířené nastavení",
+                "role": "Role pro omezení typu",
+                "permission": "Oprávnění pro omezení typu",
+                "showRole": "Role pro omezení zobrazování",
+                "showPermission": "Oprávnění pro omezení zobrazování",
+                "createRole": "Role pro omezení vytváření",
+                "createPermission": "Oprávnění pro omezení vytváření",
+                "editRole": "Role pro omezení upravování",
+                "editPermission": "Oprávnění pro omezení upravování",
+                "deleteRole": "Role pro omezení mazání",
+                "deletePermission": "Oprávnění pro omezení mazání",
+                "roleSelect": "Role",
+                "permSelect": "Oprávnění",
+                "concat": "Spojení",
+                "concatHint": "Spojka a - role nebo oprávnění je nezbytné, spojka nebo - role nebo oprávnění je postačující"
+            }
         },
         "text": {
             "addAttributeTitle": "Přidat atribut",

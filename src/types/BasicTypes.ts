@@ -11,10 +11,10 @@ export enum AttributeType {
 }
 
 export interface BaseAuthSettings {
-    requiredPermissions?: {
+    requiredPermission?: {
         [name: string]: 'and' | 'or'
     },
-    requiredRoles?: {
+    requiredRole?: {
         [name: string]: 'and' | 'or'
     }
 }

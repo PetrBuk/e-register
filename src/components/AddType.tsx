@@ -11,7 +11,8 @@ import AuthInput from './AttributesInputs/AuthInput'
 
 const CreateToolbar = (props: any) => {
 
-    const form = useForm();
+    const form = useForm()
+    console.log(form.getState().values)
 
     const preventSubmit = (e: any) => {
         e.preventDefault()
