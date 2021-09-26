@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardContent } from '@material-ui/core'
+import { Card, CardContent, makeStyles } from '@material-ui/core'
 import {
     Title, Create, SimpleForm, TextInput, SaveButton,
     Toolbar, ArrayInput, SimpleFormIterator
@@ -9,10 +9,16 @@ import { useForm } from 'react-final-form'
 import AttributeInput from './AttributesInputs/AttributeInput'
 import AuthInput from './AttributesInputs/AuthInput'
 
+const useStyles = makeStyles({
+    container: {
+        display: 'flex',
+        flexFlow: 'column'
+    }
+})
+
 const CreateToolbar = (props: any) => {
 
     const form = useForm()
-    console.log(form.getState().values)
 
     const preventSubmit = (e: any) => {
         e.preventDefault()
@@ -34,6 +40,8 @@ const CreateToolbar = (props: any) => {
 }
 
 const AddType: React.FC<any> = () => {
+
+    const classes = useStyles()
 
     return (
         <Card>

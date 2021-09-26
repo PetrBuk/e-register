@@ -27,7 +27,7 @@
             "multiple": "Vícero",
             "auth": {
                 "baseRestrict": "Základní omezení",
-                "customRestrict": "Rozšířené nastavení",
+                "customRestrict": "Rozšířené nastavení omezení",
                 "role": "Role pro omezení typu",
                 "permission": "Oprávnění pro omezení typu",
                 "showRole": "Role pro omezení zobrazování",
@@ -46,7 +46,7 @@
         },
         "text": {
             "addAttributeTitle": "Přidat atribut",
-            "addSettings": "Nastavit"
+            "addSettings": "Pokročilé nastavení"
         }
     },
     "ra.navigation.skip_nav": "Přeskočit k obsahu",

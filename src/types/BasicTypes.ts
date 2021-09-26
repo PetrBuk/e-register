@@ -12,11 +12,13 @@ export enum AttributeType {
 
 export interface BaseAuthSettings {
     requiredPermission?: {
-        [name: string]: 'and' | 'or'
-    },
+        name: string,
+        concat: 'and' | 'or'
+    }[],
     requiredRole?: {
-        [name: string]: 'and' | 'or'
-    }
+        name: string,
+        concat: 'and' | 'or'
+    }[]
 }
 
 export interface AuthSettings {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useField } from 'react-final-form'
 import { TextInput, SelectInput, useTranslate, Button } from 'react-admin'
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core'
+import { Dialog, DialogActions, DialogContent, DialogTitle, makeStyles } from '@material-ui/core'
 import { Tune, Close, Save } from '@material-ui/icons'
 
 import TextAttribute from './TextAttibute'
@@ -11,9 +11,17 @@ import DatetimeAttribute from './DatetimeAttribute'
 import ReferenceAttribute from './ReferenceAttribute'
 import AuthInput from './AuthInput'
 
+const useStyles = makeStyles({
+    wrapper: {
+        display: 'flex',
+        flexFlow: 'column'
+    }
+})
+
 const AttributeInput: React.FC<any> = (props: any) => {
 
     const translate = useTranslate()
+    const classes = useStyles()
 
     const field = useField(props.source)
 
@@ -28,7 +36,7 @@ const AttributeInput: React.FC<any> = (props: any) => {
     }
 
     return (
-        <>
+        <div className={classes.wrapper}>
             <TextInput {...props} source={`${props.source}.name`} label='createType.attributes.name' required />
             <TypeInput {...props} source={`${props.source}.type`} label='createType.attributes.type' required />
             <Button label='createType.text.addSettings' onClick={() => setOpen(true)}>
@@ -36,7 +44,7 @@ const AttributeInput: React.FC<any> = (props: any) => {
             </Button>
             <Dialog open={open} onClose={onClose} fullWidth maxWidth='md'>
                 <DialogTitle>{translate('createType.text.addAttributeTitle')}</DialogTitle>
-                <DialogContent>
+                <DialogContent className={classes.wrapper}>
                     <TextInput {...props} source={`${props.source}.name`} label='createType.attributes.name' required />
                     <TypeInput {...props} source={`${props.source}.type`} label='createType.attributes.type' required />
                     {field.input.value.type === 'text' && <TextAttribute {...props} source={`${props.source}.settings`} />}
@@ -55,7 +63,7 @@ const AttributeInput: React.FC<any> = (props: any) => {
                     </Button>
                 </DialogActions>
             </Dialog>
-        </>
+        </div>
     )
 }
 
