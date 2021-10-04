@@ -83,10 +83,14 @@
         "text": {
             "addAttributeTitle": "Přidat atribut",
             "addSettings": "Pokročilé nastavení"
+        },
+        "action": {
+            
         }
     },
     "ra.navigation.skip_nav": "Přeskočit k obsahu",
     "ra.navigation.page_rows_per_page": "Řádků na stránce",
     "ra.action.unselect": "Zrušit výběr",
-    "ra.action.export": "Export"
+    "ra.action.export": "Export",
+    "ra.action.confirm": "Potvrdit"
 }

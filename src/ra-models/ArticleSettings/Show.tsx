@@ -1,5 +1,5 @@
 import React from 'react'
-import { Show, ShowProps, SimpleShowLayout, TextField, EmailField } from 'react-admin'
+import { Show, ShowProps, SimpleShowLayout, TextField, ArrayField, Datagrid } from 'react-admin'
 
 /*const Actions = ({ basePath, data }: any) => {
     const usersPermission = useUsersPermission();
@@ -17,7 +17,11 @@ const ArticleSettingsShow: React.FC<ShowProps> = (props) => {
         <Show {...props}>
             <SimpleShowLayout>
                 <TextField source='name' />
-                <EmailField source='description' />
+                <ArrayField source='attributes'>
+                    <Datagrid>
+                        <TextField source='name' />
+                    </Datagrid>
+                </ArrayField>
             </SimpleShowLayout>
         </Show>
     )

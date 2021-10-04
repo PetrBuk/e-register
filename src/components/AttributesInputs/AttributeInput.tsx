@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { useField } from 'react-final-form'
+import { useField, useForm } from 'react-final-form'
 import { TextInput, SelectInput, useTranslate, Button } from 'react-admin'
 import { Dialog, DialogActions, DialogContent, DialogTitle, makeStyles } from '@material-ui/core'
-import { Tune, Close, Save } from '@material-ui/icons'
+import { Tune, Close, Add, Check } from '@material-ui/icons'
 
 import TextAttribute from './TextAttibute'
 import NumberAttribute from './NumberAttribute'
@@ -24,21 +24,24 @@ const AttributeInput: React.FC<any> = (props: any) => {
     const classes = useStyles()
 
     const field = useField(props.source)
+    const form = useForm()
 
     const [open, setOpen] = useState(false)
 
     const onCancel = () => {
-        // ToDo: Get default value (Record | custom props | useField)
+        form.change(props.source, props.record)
     }
 
     const onClose = () => {
         setOpen(false)
     }
 
+    console.log(field.input.value)
+
     return (
         <div className={classes.wrapper}>
             <TextInput {...props} source={`${props.source}.name`} label='createType.attributes.name' required />
-            <TypeInput {...props} source={`${props.source}.type`} label='createType.attributes.type' required />
+            <TypeInput {...props} source={`${props.source}.typeField`} label='createType.attributes.type' required />
             <Button label='createType.text.addSettings' onClick={() => setOpen(true)}>
                 <Tune />
             </Button>
@@ -46,20 +49,20 @@ const AttributeInput: React.FC<any> = (props: any) => {
                 <DialogTitle>{translate('createType.text.addAttributeTitle')}</DialogTitle>
                 <DialogContent className={classes.wrapper}>
                     <TextInput {...props} source={`${props.source}.name`} label='createType.attributes.name' required />
-                    <TypeInput {...props} source={`${props.source}.type`} label='createType.attributes.type' required />
-                    {field.input.value.type === 'text' && <TextAttribute {...props} source={`${props.source}.settings`} />}
-                    {field.input.value.type === 'number' && <NumberAttribute {...props} source={`${props.source}.settings`} />}
-                    {field.input.value.type === 'boolean' && <BooleanAttribute {...props} source={`${props.source}.settings`} />}
-                    {field.input.value.type === 'datetime' && <DatetimeAttribute {...props} source={`${props.source}.settings`} />}
-                    {field.input.value.type === 'reference' && <ReferenceAttribute {...props} source={`${props.source}.settings`} />}
+                    <TypeInput {...props} source={`${props.source}.typeField`} label='createType.attributes.type' required />
+                    {field.input.value.typeField === 'string' && <TextAttribute {...props} source={`${props.source}.settings`} />}
+                    {field.input.value.typeField === 'number' && <NumberAttribute {...props} source={`${props.source}.settings`} />}
+                    {field.input.value.typeField === 'boolean' && <BooleanAttribute {...props} source={`${props.source}.settings`} />}
+                    {field.input.value.typeField === 'datetime' && <DatetimeAttribute {...props} source={`${props.source}.settings`} />}
+                    {field.input.value.typeField === 'reference' && <ReferenceAttribute {...props} source={`${props.source}.settings`} />}
                     <AuthInput type='attribute' />
                 </DialogContent>
                 <DialogActions>
                     <Button label='ra.action.cancel' onClick={onCancel}>
                         <Close />
                     </Button>
-                    <Button label='ra.action.edit' onClick={onClose}>
-                        <Save />
+                    <Button label='ra.action.confirm' onClick={onClose}>
+                        <Check />
                     </Button>
                 </DialogActions>
             </Dialog>
@@ -72,7 +75,7 @@ export default AttributeInput;
 const TypeInput = (props: any) => {
 
     const typeChoices = [
-        { id: 'text', name: 'Text' },
+        { id: 'string', name: 'String' },
         { id: 'number', name: 'Number' },
         { id: 'boolean', name: 'Boolean' },
         { id: 'datetime', name: 'Datetime' },

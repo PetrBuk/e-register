@@ -11,13 +11,13 @@ const ReferenceAttribute: React.FC<any> = (props: any) => {
             />
             <BooleanInput
                 {...props}
-                source={`${props.source}.required`}
+                source={`${props.source}.requiredField`}
                 defaultValue={false}
                 label='createType.settings.required'
             />
             <BooleanInput
                 {...props}
-                source={`${props.source}.defaultValue`}
+                source={`${props.source}.defaultValueField`}
                 label='createType.settings.defaultValue'
             />
             <BooleanInput

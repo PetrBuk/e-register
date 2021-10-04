@@ -7,24 +7,24 @@ const TextAttribute: React.FC<any> = (props: any) => {
         <>
             <BooleanInput
                 {...props}
-                source={`${props.source}.required`}
+                source={`${props.source}.requiredField`}
                 defaultValue={false}
                 label='createType.settings.required'
             />
             <BooleanInput
                 {...props}
-                source={`${props.source}.unique`}
+                source={`${props.source}.uniqueField`}
                 defaultValue={false}
                 label='createType.settings.unique'
             />
             <BooleanInput {...props}
-                source={`${props.source}.richText`}
+                source={`${props.source}.richTextField`}
                 defaultValue={false}
                 label='createType.settings.richText'
             />
             <TextInput
                 {...props}
-                source={`${props.source}.defaultValue`}
+                source={`${props.source}.defaultValueField`}
                 label='createType.settings.defaultValue'
             />
             <NumberInput

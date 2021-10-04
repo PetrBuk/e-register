@@ -8,26 +8,26 @@ const DatetimeAttribute: React.FC<any> = (props: any) => {
     const field = useField(props.source)
 
     const onTypeChange = () => {
-        form.change(props.source + '.defaultValue', '')
+        form.change(props.source + '.defaultValueField', '')
     }
 
     return (
         <>
             <BooleanInput
                 {...props}
-                source={`${props.source}.required`}
+                source={`${props.source}.requiredField`}
                 defaultValue={false}
                 label='createType.settings.required'
             />
             <BooleanInput
                 {...props}
-                source={`${props.source}.unique`}
+                source={`${props.source}.uniqueField`}
                 defaultValue={false}
                 label='createType.settings.unique'
             />
             <SelectInput
                 {...props}
-                source={`${props.source}.type`}
+                source={`${props.source}.typeField`}
                 choices={[{ id: 'date', name: 'date' }, { id: 'time', name: 'time' }, { id: 'datetime-local', name: 'datetime' }]}
                 defaultValue='datetime-local'
                 onChange={onTypeChange}
@@ -35,7 +35,7 @@ const DatetimeAttribute: React.FC<any> = (props: any) => {
             />
             <DateTimeInput 
                 {...props}
-                source={`${props.source}.defaultValue`}
+                source={`${props.source}.defaultValueField`}
                 type={field.input.value.type || 'datetime-local'}
                 label='createType.settings.defaultValue'
             />
