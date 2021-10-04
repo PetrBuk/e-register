@@ -3,10 +3,11 @@ import axios from 'axios'
 
 const apiUrl = 'http://localhost:5000/api/'
 
-const staticResources = ['User', 'Role', 'Permission']
+const staticResources = ['User', 'Role', 'Permission', 'ArticleSettings']
 
 const getDbResource = (resource: string) => {
-    if (resource in staticResources) {
+    console.log(resource)
+    if (staticResources.includes(resource)) {
         return resource
     } else return 'article'
 }
@@ -55,7 +56,7 @@ const dataProvider: DataProvider = {
     },
     create: (resource, params) => {
         return new Promise(async (resolve, reject) => {
-            axios.post(apiUrl + getDbResource(resource) + '/' + params.data.id, params.data, {
+            axios.post(apiUrl + getDbResource(resource), {...params.data, typeField: resource}, {
                 withCredentials: true
             })
                 .then(resp => {

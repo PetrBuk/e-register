@@ -1,6 +1,42 @@
 {
     "resources": {
+        "User": {
+            "name": "Uživatelé",
+            "fields": {
+                "email": "E-mail",
+                "name": "Jméno",
+                "password": "Heslo"
+            }
+        },
+        "Permission": {
+            "name": "Oprávnění",
+            "fields": {
+                "id": "ID",
+                "name": "Název",
+                "description": "Popis"
+            }
+        },
+        "Role": {
+            "name": "Role",
+            "fields": {
+                "id": "ID",
+                "name": "Název",
+                "description": "Popis"
+            }
+        },
+        "ArticleSettings": {
+            "name": "Typy artiklů",
+            "fields": {
+                "name": "Název",
+                "attributes": {
+                    "name": "Název",
+                    "typeField": "Typ"
+                },
+                "auth": {
 
+                }
+            }
+        }
     },
     "createType": {
         "attributes": {
@@ -51,5 +87,6 @@
     },
     "ra.navigation.skip_nav": "Přeskočit k obsahu",
     "ra.navigation.page_rows_per_page": "Řádků na stránce",
-    "ra.action.unselect": "Zrušit výběr"
+    "ra.action.unselect": "Zrušit výběr",
+    "ra.action.export": "Export"
 }
