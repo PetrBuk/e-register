@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Admin, Resource } from 'react-admin'
 
 import Dashboard from './ra-customs/Dashboard'
@@ -8,15 +8,32 @@ import customRoutes from './ra-customs/customRoutes'
 import dataProvider from './providers/dataProvider'
 import authProvider from './providers/authProvider'
 import i18nProvider from './providers/I18nProvider'
-import { typeSettings } from './providers/dummyData'
 
 import { getCreateComponent, getEditComponent, getListComponent, getShowComponent } from './utils/utils'
 
 import './App.css'
+import axios from 'axios'
+
+const apiUrl = 'http://localhost:5000/api/'
 
 const App: React.FC = () => {
 
-    const resources = typeSettings.map((obj) => {
+    const [articleSettings, setArticleSettings] = useState([])
+
+    useEffect(() => {
+        axios.get(apiUrl + 'articleSettings', {
+            headers: {
+                //"Access-Control-Expose-Headers": "Content-Range"
+            },
+            withCredentials: true
+        })
+            .then(resp => {
+                console.log(resp)
+                setArticleSettings(resp.data)
+            })
+    }, [])
+
+    const resources = articleSettings.map((obj: any) => {
         return (
             <Resource 
                 key={obj.name}
@@ -29,8 +46,6 @@ const App: React.FC = () => {
         )
     })
 
-    resources.push(<Resource key='typesSettings' name='typesSettings' />)
-
     return (
         <Admin
             dataProvider={dataProvider}
@@ -40,7 +55,11 @@ const App: React.FC = () => {
             layout={Layout}
             customRoutes={customRoutes}
         >
+            <Resource key='articleSettings' name='articleSettings' />
             {resources}
+            <Resource key='users' name='users' />
+            <Resource key='permissions' name='permissions' />
+            <Resource key='roles' name='roles' />
         </Admin>
     );
 }

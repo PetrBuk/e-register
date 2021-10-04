@@ -1,35 +1,48 @@
 import { AuthProvider } from 'react-admin'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 
-function sleep(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms))
-}
+const apiUrl = 'http://localhost:5000/api/'
 
 const authProvider: AuthProvider = {
-    login: (params: any) => {
-        return new Promise(async (resolve, reject) => {
-            await sleep(200)
-            resolve(true)
+    login: (params) => {
+        return new Promise((resolve, reject) => {
+            axios.post(apiUrl + 'auth', {
+                email: params.username,
+                password: params.password
+            }, {
+                withCredentials: true
+            }).then(resp => {
+                console.log(resp)
+                return resolve('')
+            }).catch(err => {
+                console.log(err)
+                return reject(err)
+            })
         })
     },
-    logout: (params: any) => {
-        return new Promise(async (resolve, reject) => {
-            await sleep(200)
+    logout: (params) => {
+        return new Promise((resolve, reject) => {
+            Cookies.remove('jwtp')
+            return resolve()
         })
     },
-    checkAuth: (params: any) => {
-        return new Promise(async (resolve, reject) => {
-            await sleep(200)
+    checkAuth: (params) => {
+        return new Promise((resolve, reject) => {
+            if (Cookies.get('jwtp')) {
+                return resolve()
+            }
+            return reject()
         })
     },
-    checkError: (params: any) => {
-        return new Promise(async (resolve, reject) => {
-            await sleep(200)
+    checkError: (params) => {
+        return new Promise((resolve, reject) => {
+            return resolve()
         })
     },
-    getPermissions: (params: any) => {
-        return new Promise(async (resolve, reject) => {
-            await sleep(200)
-            resolve({perms: [1, 2, 3]})
+    getPermissions: (params) => {
+        return new Promise((resolve, reject) => {
+            resolve({ perms: [1, 2, 3] })
         })
     },
 }
