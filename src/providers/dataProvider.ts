@@ -21,8 +21,12 @@ const dataProvider: DataProvider = {
                     //"Access-Control-Expose-Headers": "Content-Range"
                 },
                 withCredentials: true
-            }).then((resp) => {
-                    console.log(resp)
+            }).then((resp: any) => {
+                    console.log('GET LIST:', resp)
+                    const validUntil = new Date()
+                    const duration =  5 * 60 * 1000
+                    validUntil.setTime(validUntil.getTime() + duration)
+                    resp.data.validUntil = validUntil
                     return resolve(resp.data)
                 }).catch((err) => {
                     console.log(err)
@@ -36,7 +40,7 @@ const dataProvider: DataProvider = {
                 withCredentials: true
             })
                 .then(resp => {
-                    console.log(resp)
+                    console.log('GET ONE:', resp)
                     return resolve(resp.data)
                 }).catch(err => {
                     console.log(err)
@@ -60,7 +64,7 @@ const dataProvider: DataProvider = {
                 withCredentials: true
             })
                 .then(resp => {
-                    console.log(resp)
+                    console.log('CREATE:', resp)
                     return resolve(resp.data)
                 }).catch(err => {
                     console.log(err)
@@ -74,7 +78,7 @@ const dataProvider: DataProvider = {
                 withCredentials: true
             })
                 .then(resp => {
-                    console.log(resp)
+                    console.log('UPDATE:', resp)
                     return resolve(resp.data)
                 }).catch(err => {
                     console.log(err)
@@ -93,7 +97,7 @@ const dataProvider: DataProvider = {
                 withCredentials: true
             })
                 .then(resp => {
-                    console.log(resp)
+                    console.log('DELETE:', resp)
                     return resolve(resp.data)
                 }).catch(err => {
                     console.log(err)

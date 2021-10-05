@@ -12,7 +12,7 @@ const BooleanAttribute: React.FC<any> = (props: any) => {
             />
             <BooleanInput
                 {...props}
-                source={`${props.source}.defaultValueField`}
+                source={`${props.source}.defaultValue`}
                 label='createType.settings.defaultValue'
             />
         </>

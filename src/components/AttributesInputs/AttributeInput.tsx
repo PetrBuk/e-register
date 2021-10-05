@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useField, useForm } from 'react-final-form'
 import { TextInput, SelectInput, useTranslate, Button } from 'react-admin'
 import { Dialog, DialogActions, DialogContent, DialogTitle, makeStyles } from '@material-ui/core'
-import { Tune, Close, Add, Check } from '@material-ui/icons'
+import { Tune, Close, Check } from '@material-ui/icons'
 
 import TextAttribute from './TextAttibute'
 import NumberAttribute from './NumberAttribute'

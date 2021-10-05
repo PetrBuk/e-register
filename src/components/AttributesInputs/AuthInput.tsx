@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { ArrayInput, SimpleFormIterator, SelectInput, useTranslate } from 'react-admin'
+import React, { useEffect, useState } from 'react'
+import { useTranslate, ReferenceArrayInput, SelectArrayInput, useGetList } from 'react-admin'
 import { FormControlLabel, makeStyles, Switch, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles({
@@ -16,6 +16,10 @@ const AuthInput: React.FC<any> = (props: any) => {
 
     const translate = useTranslate()
     const classes = useStyles()
+
+    //To prevent 30 Reguest for rendering 30 Reference many inputs fetch the data with validUntil date
+    useGetList('Permission')
+    useGetList('Role')
 
     return (
         <div className={classes.container} >
@@ -85,41 +89,23 @@ const RestrictInput: React.FC<any> = (props) => {
 
     const { permLabel, roleLabel, ...rest } = props
 
-    const concatChoices = [{ id: 'and', name: 'and' }, { id: 'or', name: 'or' }]
-
     return (
         <div>
             <Typography color='primary'>
                 {props.title}
             </Typography>
-            <ArrayInput
-                {...rest}
-                source={`${props.source}.requiredRole`}
-                label={`createType.settings.auth.${roleLabel}`}
-            >
-                <SimpleFormIterator>
-                    <SelectInput source='role' label='createType.settings.auth.roleSelect' />
-                    <SelectInput
-                        source='concat'
-                        label='createType.settings.auth.concat'
-                        choices={concatChoices}
-                    />
-                </SimpleFormIterator>
-            </ArrayInput>
-            <ArrayInput
-                {...rest}
-                source={`${props.source}.requiredPermission`}
-                label={`createType.settings.auth.${permLabel}`}
-            >
-                <SimpleFormIterator>
-                    <SelectInput source='permission' label='createType.settings.auth.permSelect' />
-                    <SelectInput
-                        source='concat'
-                        label='createType.settings.auth.concat'
-                        choices={concatChoices}
-                    />
-                </SimpleFormIterator>
-            </ArrayInput>
+            <ReferenceArrayInput {...rest} source={`${props.source}.roles.requiredRoles`} reference='Role' >
+                <SelectArrayInput optionText='name' />
+            </ReferenceArrayInput>
+            <ReferenceArrayInput {...rest} source={`${props.source}.roles.oneOfRoles`} reference='Role' >
+                <SelectArrayInput optionText='name' />
+            </ReferenceArrayInput>
+            <ReferenceArrayInput {...rest} source={`${props.source}.permissions.requiredPermissions`} reference='Permission' >
+                <SelectArrayInput optionText='name' />
+            </ReferenceArrayInput>
+            <ReferenceArrayInput {...rest} source={`${props.source}.permissions.oneOfPermissions`} reference='Permission' >
+                <SelectArrayInput optionText='name' />
+            </ReferenceArrayInput>
         </div>
     )
 }

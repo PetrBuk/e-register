@@ -18,13 +18,13 @@ const TextAttribute: React.FC<any> = (props: any) => {
                 label='createType.settings.unique'
             />
             <BooleanInput {...props}
-                source={`${props.source}.richTextField`}
+                source={`${props.source}.richText`}
                 defaultValue={false}
                 label='createType.settings.richText'
             />
             <TextInput
                 {...props}
-                source={`${props.source}.defaultValueField`}
+                source={`${props.source}.defaultValue`}
                 label='createType.settings.defaultValue'
             />
             <NumberInput

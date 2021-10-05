@@ -18,17 +18,17 @@ const NumberAttribute: React.FC<any> = (props: any) => {
             />
             <NumberInput
                 {...props}
-                source={`${props.source}.defaultValueField`}
+                source={`${props.source}.defaultValue`}
                 label='createType.settings.defaultValue'
             />
             <NumberInput
                 {...props}
-                source={`${props.source}.validationField.min`}
+                source={`${props.source}.validation.min`}
                 label='createType.settings.min'
             />
             <NumberInput
                 {...props}
-                source={`${props.source}.validationField.max`}
+                source={`${props.source}.validation.max`}
                 label='createType.settings.max'
             />
         </>
