@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useTranslate, ReferenceArrayInput, SelectArrayInput, useGetList } from 'react-admin'
 import { FormControlLabel, makeStyles, Switch, Typography } from '@material-ui/core'
 

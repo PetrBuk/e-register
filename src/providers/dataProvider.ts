@@ -15,23 +15,28 @@ const getDbResource = (resource: string) => {
 const dataProvider: DataProvider = {
     getList: (resource, params) => {
         return new Promise((resolve, reject) => {
+            if (getDbResource(resource) === 'article') {
+                const { filter } = params
+                filter.typeField = resource
+                params.filter = filter
+            }
             axios.get(apiUrl + getDbResource(resource), {
-                params,
+                params: { ...params },
                 headers: {
                     //"Access-Control-Expose-Headers": "Content-Range"
                 },
                 withCredentials: true
             }).then((resp: any) => {
-                    console.log('GET LIST:', resp)
-                    const validUntil = new Date()
-                    const duration =  5 * 60 * 1000
-                    validUntil.setTime(validUntil.getTime() + duration)
-                    resp.data.validUntil = validUntil
-                    return resolve(resp.data)
-                }).catch((err) => {
-                    console.log(err)
-                    return reject(err)
-                })
+                console.log('GET LIST:', resp)
+                const validUntil = new Date()
+                const duration = 5 * 60 * 1000
+                validUntil.setTime(validUntil.getTime() + duration)
+                resp.data.validUntil = validUntil
+                return resolve(resp.data)
+            }).catch((err) => {
+                console.log(err)
+                return reject(err)
+            })
         })
     },
     getOne: (resource, params) => {
@@ -60,7 +65,7 @@ const dataProvider: DataProvider = {
     },
     create: (resource, params) => {
         return new Promise(async (resolve, reject) => {
-            axios.post(apiUrl + getDbResource(resource), {...params.data, typeField: resource}, {
+            axios.post(apiUrl + getDbResource(resource), { ...params.data, typeField: resource }, {
                 withCredentials: true
             })
                 .then(resp => {

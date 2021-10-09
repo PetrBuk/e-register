@@ -92,5 +92,7 @@
     "ra.navigation.page_rows_per_page": "Řádků na stránce",
     "ra.action.unselect": "Zrušit výběr",
     "ra.action.export": "Export",
-    "ra.action.confirm": "Potvrdit"
+    "ra.action.confirm": "Potvrdit",
+    "ra.page.empty": "Dosud nebyl vytvořen žádný záznam",
+    "ra.page.invite": "Vytvořit záznam můžete stisknutím tlačítka níže."
 }

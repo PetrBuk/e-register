@@ -14,7 +14,6 @@ const RoleList: React.FC<ListProps> = (props) => {
         <List
             {...props}
             //filters={<UsersFilter />}
-            filterDefaultValues={{ active: true }}
             exporter={false}
             bulkActionButtons={false}
         >
