@@ -33,7 +33,7 @@ const DatetimeAttribute: React.FC<any> = (props: any) => {
                 onChange={onTypeChange}
                 label='createType.settings.type'
             />
-            <DateTimeInput 
+            <DateTimeInput
                 {...props}
                 source={`${props.source}.defaultValue`}
                 type={field.input.value.type || 'datetime-local'}

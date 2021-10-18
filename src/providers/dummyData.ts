@@ -2,10 +2,9 @@ export enum AttributeType {
     Number = 'number',
     String = 'string',
     Boolean = 'boolean',
-    Time = 'string',
     Datetime = 'datetime',
     Image = 'image',
-    Relation = 'relation',
+    Reference = 'reference',
     Barcode = 'barcode',
     Eancode = 'eancode',
     Enum = 'enum'
@@ -13,8 +12,8 @@ export enum AttributeType {
 
 export type AttributeSettings = {
     name: string,
-    type: AttributeType,
-    typeSetting?: { [x: string]: any }
+    typeField: AttributeType,
+    settings: { [x: string]: any }
 }
 
 export type ArticleTypeSettings = {
@@ -40,29 +39,30 @@ const pitiTypeSetting: ArticleTypeSettings = {
     attributes: [
         {
             name: 'nazev',
-            type: AttributeType.String,
-            typeSetting: {
+            typeField: AttributeType.String,
+            settings: {
                 validation: {
                     maxLength: 50
                 }
             }
         }, {
             name: 'pocet',
-            type: AttributeType.Number,
-            typeSetting: {
+            typeField: AttributeType.Number,
+            settings: {
                 validation: {
                     min: 0
                 }
             }
         }, {
             name: 'datum_porizeni',
-            type: AttributeType.Datetime,
-            typeSetting: {
+            typeField: AttributeType.Datetime,
+            settings: {
                 format: 'DD_MM_YYYY'
             }
         }, {
             name: 'vyrazeno', 
-            type: AttributeType.Boolean
+            typeField: AttributeType.Boolean,
+            settings: {}
         }
     ]
 }
@@ -72,30 +72,30 @@ const startTypeSetting: ArticleTypeSettings = {
     attributes: [
         {
             name: 'nazev',
-            type: AttributeType.String,
-            typeSetting: {
+            typeField: AttributeType.String,
+            settings: {
                 validation: {
                     maxLength: 50
                 }
             }
         }, {
             name: 'pocet',
-            type: AttributeType.Number,
-            typeSetting: {
+            typeField: AttributeType.Number,
+            settings: {
                 validation: {
                     min: 0
                 }
             }
         }, {
             name: 'datum_porizeni',
-            type: AttributeType.Datetime,
-            typeSetting: {
+            typeField: AttributeType.Datetime,
+            settings: {
                 format: 'DD.MM.YYYY'
             }
         }, {
             name: 'vyrazeno', 
-            type: AttributeType.Boolean,
-            typeSetting: {
+            typeField: AttributeType.Boolean,
+            settings: {
                 validation: {
                     required: true
                 }

@@ -35,8 +35,11 @@ const authProvider: AuthProvider = {
             return reject()
         })
     },
-    checkError: (params) => {
+    checkError: (error) => {
         return new Promise((resolve, reject) => {
+            if (error.status === 401) {
+                return reject()
+            }
             return resolve()
         })
     },

@@ -55,12 +55,46 @@ const dataProvider: DataProvider = {
     },
     getMany: (resource, params) => {
         return new Promise(async (resolve, reject) => {
-            return reject({ message: 'Get many not supported yet' })
+            axios.get(apiUrl + getDbResource(resource) + '/', {
+                withCredentials: true,
+                params: {
+                    filter: {
+                        _id: params.ids
+                    }
+                }
+            })
+                .then(resp => {
+                    console.log('GET MANY:', resp)
+                    return resolve(resp.data)
+                }).catch(err => {
+                    console.log(err)
+                    return reject(err)
+                })
         })
     },
     getManyReference: (resource, params) => {
         return new Promise(async (resolve, reject) => {
-            return reject({ message: 'Get many reference not supported' })
+            if (params.id === undefined) {
+                resolve({data: [], total: 0})
+            }
+            axios.get(apiUrl + getDbResource(resource) + '/', {
+                withCredentials: true,
+                params: {
+                    sort: params.sort,
+                    pagination: params.pagination,
+                    filter: {
+                        ...params.filter,
+                        _id: params.id
+                    }
+                }
+            })
+                .then(resp => {
+                    console.log('GET MANY REFERENCE:', resp)
+                    return resolve(resp.data)
+                }).catch(err => {
+                    console.log(err)
+                    return reject(err)
+                })
         })
     },
     create: (resource, params) => {

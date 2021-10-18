@@ -9,6 +9,17 @@ const ReferenceAttribute: React.FC<any> = (props: any) => {
                 source={`${props.source}.reference`}
                 label='createType.settings.reference'
             />
+            <TextInput
+                {...props}
+                source={`${props.source}.referenceField`}
+                label='createType.settings.referenceField'
+            />
+            <BooleanInput
+                {...props}
+                source={`${props.source}.multiple`}
+                label='createType.settings.multiple'
+                defaultChecked={false}
+            />
             <BooleanInput
                 {...props}
                 source={`${props.source}.requiredField`}
@@ -19,11 +30,6 @@ const ReferenceAttribute: React.FC<any> = (props: any) => {
                 {...props}
                 source={`${props.source}.defaultValue`}
                 label='createType.settings.defaultValue'
-            />
-            <BooleanInput
-                {...props}
-                source={`${props.source}.multiple`}
-                label='createType.settings.multiple'
             />
         </>
     )

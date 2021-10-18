@@ -1,6 +1,7 @@
 import {
     List, Show, SimpleShowLayout, Create, Edit, SimpleForm, Datagrid, TextInput, TextField, NumberInput, NumberField,
-    BooleanInput, BooleanField
+    BooleanInput, BooleanField, DateTimeInput, DateField, ReferenceField, ReferenceInput, SelectInput,
+    ReferenceArrayInput, SelectArrayInput, ReferenceManyField, ChipField, SingleFieldList
 } from 'react-admin'
 
 import { ArticleTypeSettings, AttributeSettings, AttributeType } from "../providers/dummyData"
@@ -34,7 +35,7 @@ export const getShowComponent = (settings: ArticleTypeSettings) => {
             <Show {...props}>
                 <SimpleShowLayout>
                     {fields}
-                </SimpleShowLayout> 
+                </SimpleShowLayout>
             </Show>
         )
     }
@@ -51,7 +52,7 @@ export const getCreateComponent = (settings: ArticleTypeSettings) => {
             <Create {...props}>
                 <SimpleForm>
                     {fields}
-                </SimpleForm> 
+                </SimpleForm>
             </Create>
         )
     }
@@ -68,17 +69,19 @@ export const getEditComponent = (settings: ArticleTypeSettings) => {
             <Edit {...props}>
                 <SimpleForm>
                     {fields}
-                </SimpleForm> 
+                </SimpleForm>
             </Edit>
         )
     }
 }
 
 const getField = (settings: AttributeSettings, input = false) => {
-    switch (settings.type) {
+    switch (settings.typeField) {
         case AttributeType.String:
             return (
-                input ? <TextInput key={settings.name} source={settings.name} /> : <TextField key={settings.name} source={settings.name} />
+                input ?
+                    <TextInput key={settings.name} source={settings.name} multiline={settings?.settings?.richtext} /> :
+                    <TextField key={settings.name} source={settings.name} />
             );
         case AttributeType.Number:
             return (
@@ -87,10 +90,48 @@ const getField = (settings: AttributeSettings, input = false) => {
         case AttributeType.Boolean:
             return (
                 input ? <BooleanInput key={settings.name} source={settings.name} /> : <BooleanField key={settings.name} source={settings.name} />
-            )
+            );
+        case AttributeType.Datetime:
+            return (
+                input ? <DateTimeInput key={settings.name} source={settings.name} /> : <DateField key={settings.name} source={settings.name} />
+            );
+        case AttributeType.Reference:
+            if (input) {
+                return (
+                    settings.settings.multiple ?
+                        <ReferenceArrayInput
+                            reference={settings.settings?.reference}
+                            key={settings.name}
+                            source={settings.name}
+                        >
+                            <SelectArrayInput optionText={settings.settings?.referenceField || 'id'} />
+                        </ReferenceArrayInput> :
+                        <ReferenceInput reference={settings.settings?.reference} key={settings.name} source={settings.name}>
+                            <SelectInput optionText={settings.settings?.referenceField || 'id'} />
+                        </ReferenceInput>
+                )
+            } else {
+                console.log("HEH", settings.settings.multiple)
+                return (
+                    settings.settings.multiple ?
+                        <ReferenceManyField
+                            reference={settings.settings?.reference}
+                            key={settings.name}
+                            source={settings.name}
+                            target={settings.name}
+                        >
+                            <SingleFieldList>
+                                <ChipField source={settings.settings?.referenceField || 'id'} />
+                            </SingleFieldList>
+                        </ReferenceManyField> :
+                        <ReferenceField key={settings.name} source={settings.name} reference={settings.settings?.reference}>
+                            <TextField source={settings.settings?.referenceField || 'id'} />
+                        </ReferenceField>
+                )
+            }
         default:
             return (
-                input? <TextInput key={settings.name} source={settings.name} /> : <TextField key={settings.name} source={settings.name} />
+                input ? <TextInput key={settings.name} source={settings.name} /> : <TextField key={settings.name} source={settings.name} />
             )
     }
 }

@@ -96,7 +96,7 @@ const Menu: FC<MenuProps> = props => {
                 ))}
             {//@ts-ignore
                 <MenuItemLink
-                    to="/add-type"
+                    to="/ArticleSettings/create"
                     primaryText="Přidat"
                     leftIcon={<AddIcon />}
                     onClick={onMenuClick}

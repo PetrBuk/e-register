@@ -60,6 +60,7 @@
             "max": "Maximální hodnota",
             "type": "Typ",
             "reference": "Název reference",
+            "referenceField": "Název zobrazovaného atributu",
             "multiple": "Vícero",
             "auth": {
                 "baseRestrict": "Základní omezení",
@@ -94,5 +95,6 @@
     "ra.action.export": "Export",
     "ra.action.confirm": "Potvrdit",
     "ra.page.empty": "Dosud nebyl vytvořen žádný záznam",
-    "ra.page.invite": "Vytvořit záznam můžete stisknutím tlačítka níže."
+    "ra.page.invite": "Vytvořit záznam můžete stisknutím tlačítka níže.",
+    "ra.auth.auth_check_error": "Uživatel není přihlášen."
 }
