@@ -11,14 +11,14 @@ export enum AttributeType {
 }
 
 export interface BaseAuthSettings {
-    requiredPermission?: {
-        name: string,
-        concat: 'and' | 'or'
-    }[],
-    requiredRole?: {
-        name: string,
-        concat: 'and' | 'or'
-    }[]
+    roles?: {
+        require: string[],
+        oneOf: string[]
+    },
+    permissions?: {
+        require: string[],
+        oneOf: string[]
+    }
 }
 
 export interface AuthSettings {
@@ -32,9 +32,9 @@ export interface AuthSettings {
 export interface AttributeSettings {
     name: string,
     type: AttributeType,
-    typeSetting?: 
-    TextAtributeSettings | NumberAttributeSettings | 
-    BooleanAttributeSettings | DatetimeAttributeSettings | 
+    typeSetting?:
+    TextAtributeSettings | NumberAttributeSettings |
+    BooleanAttributeSettings | DatetimeAttributeSettings |
     ReferenceAttributeSettings,
     auth?: AuthSettings
 }

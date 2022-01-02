@@ -7,9 +7,14 @@ import AuthInput from '../../components/AttributesInputs/AuthInput'
 const ArticleSettingsCreate: React.FC<CreateProps> = (props) => {
 
     const transform = (record: any) => {
-        console.log(record)
-        // ToDo: Add databese name field to the articleType and all its attributes
-        return record
+        const {attributes, ...newRecord} = record
+        const newAttributes = [...attributes]
+        newRecord.name = record.displayName;
+        for (let attribute of newAttributes) {
+            attribute.name = attribute.displayName
+        }
+        newRecord.attributes = newAttributes
+        return newRecord
     }
 
     return (

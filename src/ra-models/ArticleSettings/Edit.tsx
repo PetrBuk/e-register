@@ -9,8 +9,6 @@ import AuthInput from '../../components/AttributesInputs/AuthInput'
 const ArticleSettingsEdit: React.FC<EditProps> = (props) => {
 
     const transform = (record: any) => {
-        console.log(record)
-        // ToDo: Add databese name field to the articleType and all its attributes
         return record
     }
 

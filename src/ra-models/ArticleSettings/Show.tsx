@@ -1,5 +1,6 @@
 import React from 'react'
 import { Show, ShowProps, SimpleShowLayout, TextField, ArrayField, Datagrid } from 'react-admin'
+import { AuthField } from '../../components/AttributesInputs/AuthInput'
 
 /*const Actions = ({ basePath, data }: any) => {
     const usersPermission = useUsersPermission();
@@ -11,18 +12,17 @@ import { Show, ShowProps, SimpleShowLayout, TextField, ArrayField, Datagrid } fr
     </TopToolbar>;
 };*/
 
-// ToDo: this component
 const ArticleSettingsShow: React.FC<ShowProps> = (props) => {
-
     return (
         <Show {...props}>
             <SimpleShowLayout>
-                <TextField source='name' />
+                <TextField source='displayName' />
                 <ArrayField source='attributes'>
                     <Datagrid>
-                        <TextField source='name' />
+                        <TextField source='displayName' />
                     </Datagrid>
                 </ArrayField>
+                <AuthField source='auth' type='type' />
             </SimpleShowLayout>
         </Show>
     )
