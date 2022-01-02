@@ -111,7 +111,6 @@ const getField = (settings: AttributeSettings, input = false) => {
                         </ReferenceInput>
                 )
             } else {
-                console.log("HEH", settings.settings.multiple)
                 return (
                     settings.settings.multiple ?
                         <ReferenceManyField

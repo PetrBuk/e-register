@@ -28,8 +28,10 @@
             "name": "Typy artiklů",
             "fields": {
                 "name": "Název",
+                "displayName": "Název",
                 "attributes": {
                     "name": "Název",
+                    "displayName": "Název",
                     "typeField": "Typ"
                 },
                 "auth": {
@@ -63,6 +65,10 @@
             "referenceField": "Název zobrazovaného atributu",
             "multiple": "Vícero",
             "auth": {
+                "requiredRoles": "Povinné role",
+                "oneOfRoles": "Jedna z rolí",
+                "requiredPermissions": "Povinné oprávnění",
+                "oneOfPermissions": "Jedno z oprávnění",
                 "baseRestrict": "Základní omezení",
                 "customRestrict": "Rozšířené nastavení omezení",
                 "role": "Role pro omezení typu",
@@ -76,9 +82,7 @@
                 "deleteRole": "Role pro omezení mazání",
                 "deletePermission": "Oprávnění pro omezení mazání",
                 "roleSelect": "Role",
-                "permSelect": "Oprávnění",
-                "concat": "Spojení",
-                "concatHint": "Spojka a - role nebo oprávnění je nezbytné, spojka nebo - role nebo oprávnění je postačující"
+                "permSelect": "Oprávnění"
             }
         },
         "text": {

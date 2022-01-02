@@ -1,5 +1,5 @@
 import React from 'react'
-import UsersIcon from '@material-ui/icons/People'
+import UsersIcon from '@material-ui/icons/Settings'
 
 const LazyCreate = React.lazy(() => import('./Create'))
 const LazyEdit = React.lazy(() => import('./Edit'))

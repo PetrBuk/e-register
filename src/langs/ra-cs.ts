@@ -1,6 +1,6 @@
-import { TranslationMessages } from 'ra-core';
+//import { TranslationMessages } from 'ra-core';
 
-const czechMesseges: TranslationMessages = {
+const czechMesseges = {
     ra: {
         action: {
             add_filter: 'Přidat filtr',

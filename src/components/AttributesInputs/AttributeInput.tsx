@@ -36,11 +36,9 @@ const AttributeInput: React.FC<any> = (props: any) => {
         setOpen(false)
     }
 
-    console.log(field.input.value)
-
     return (
         <div className={classes.wrapper}>
-            <TextInput {...props} source={`${props.source}.name`} label='createType.attributes.name' required />
+            <TextInput {...props} source={`${props.source}.displayName`} label='createType.attributes.name' required />
             <TypeInput {...props} source={`${props.source}.typeField`} label='createType.attributes.type' required />
             <Button label='createType.text.addSettings' onClick={() => setOpen(true)}>
                 <Tune />
@@ -48,7 +46,7 @@ const AttributeInput: React.FC<any> = (props: any) => {
             <Dialog open={open} onClose={onClose} fullWidth maxWidth='md'>
                 <DialogTitle>{translate('createType.text.addAttributeTitle')}</DialogTitle>
                 <DialogContent className={classes.wrapper}>
-                    <TextInput {...props} source={`${props.source}.name`} label='createType.attributes.name' required />
+                    <TextInput {...props} source={`${props.source}.displayName`} label='createType.attributes.name' required />
                     <TypeInput {...props} source={`${props.source}.typeField`} label='createType.attributes.type' required />
                     {field.input.value.typeField === 'string' && <TextAttribute {...props} source={`${props.source}.settings`} />}
                     {field.input.value.typeField === 'number' && <NumberAttribute {...props} source={`${props.source}.settings`} />}

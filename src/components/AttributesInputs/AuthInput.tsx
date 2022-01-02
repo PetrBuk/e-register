@@ -6,6 +6,11 @@ const useStyles = makeStyles({
     container: {
         display: 'flex',
         flexFlow: 'column'
+    },
+    wrapper: {
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gridAutoFlow: 'row'
     }
 })
 
@@ -18,11 +23,17 @@ const AuthInput: React.FC<any> = (props: any) => {
     const classes = useStyles()
 
     //To prevent 30 Reguest for rendering 30 Reference many inputs fetch the data with validUntil date
-    useGetList('Permission')
-    useGetList('Role')
+    const permissions = useGetList('Permission')
+    const roles = useGetList('Role')
+
+    if (!permissions.loaded && !roles.loaded) {
+        return (
+            <p>Loading</p>
+        )
+    }
 
     return (
-        <div className={classes.container} >
+        <div className={classes.container}>
             <FormControlLabel
                 control={<Switch
                     checked={baseRestriction}
@@ -87,6 +98,7 @@ export default AuthInput;
 
 const RestrictInput: React.FC<any> = (props) => {
 
+    const classes = useStyles()
     const { permLabel, roleLabel, ...rest } = props
 
     return (
@@ -94,18 +106,52 @@ const RestrictInput: React.FC<any> = (props) => {
             <Typography color='primary'>
                 {props.title}
             </Typography>
-            <ReferenceArrayInput {...rest} source={`${props.source}.roles.requiredRoles`} reference='Role' >
-                <SelectArrayInput optionText='name' />
-            </ReferenceArrayInput>
-            <ReferenceArrayInput {...rest} source={`${props.source}.roles.oneOfRoles`} reference='Role' >
-                <SelectArrayInput optionText='name' />
-            </ReferenceArrayInput>
-            <ReferenceArrayInput {...rest} source={`${props.source}.permissions.requiredPermissions`} reference='Permission' >
-                <SelectArrayInput optionText='name' />
-            </ReferenceArrayInput>
-            <ReferenceArrayInput {...rest} source={`${props.source}.permissions.oneOfPermissions`} reference='Permission' >
-                <SelectArrayInput optionText='name' />
-            </ReferenceArrayInput>
+            <div className={classes.wrapper}>
+                <ReferenceArrayInput
+                    {...rest}
+                    source={`${props.source}.roles.requiredRoles`}
+                    label='createType.settings.auth.requiredRoles'
+                    reference='Role'
+                >
+                    <SelectArrayInput optionText='name' />
+                </ReferenceArrayInput>
+                <ReferenceArrayInput
+                    {...rest}
+                    source={`${props.source}.roles.oneOfRoles`}
+                    label='createType.settings.auth.oneOfRoles'
+
+                    reference='Role'
+                >
+                    <SelectArrayInput optionText='name' />
+                </ReferenceArrayInput>
+                <ReferenceArrayInput
+                    {...rest}
+                    source={`${props.source}.permissions.requiredPermissions`}
+                    label='createType.settings.auth.requiredPermissions'
+
+                    reference='Permission'
+                >
+                    <SelectArrayInput optionText='name' />
+                </ReferenceArrayInput>
+                <ReferenceArrayInput
+                    {...rest}
+                    source={`${props.source}.permissions.oneOfPermissions`}
+                    label='createType.settings.auth.oneOfPermissions'
+
+                    reference='Permission'
+                >
+                    <SelectArrayInput optionText='name' />
+                </ReferenceArrayInput>
+            </div>
         </div>
+    )
+}
+
+//ToDo: this
+export const AuthField: React.FC<any> = () => {
+    return(
+        <>
+
+        </>
     )
 }

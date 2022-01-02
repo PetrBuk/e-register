@@ -8,10 +8,16 @@ import AuthInput from '../../components/AttributesInputs/AuthInput'
 
 const ArticleSettingsEdit: React.FC<EditProps> = (props) => {
 
+    const transform = (record: any) => {
+        console.log(record)
+        // ToDo: Add databese name field to the articleType and all its attributes
+        return record
+    }
+
     return (
-        <Edit {...props}>
+        <Edit {...props} transform={transform}>
             <SimpleForm>
-                <TextInput source='name' required />
+                <TextInput source='displayName' required />
                 <ArrayInput source='attributes'>
                     <SimpleFormIterator>
                         <AttributeInput />

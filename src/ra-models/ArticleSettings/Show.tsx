@@ -11,6 +11,7 @@ import { Show, ShowProps, SimpleShowLayout, TextField, ArrayField, Datagrid } fr
     </TopToolbar>;
 };*/
 
+// ToDo: this component
 const ArticleSettingsShow: React.FC<ShowProps> = (props) => {
 
     return (
