@@ -134,3 +134,9 @@ const getField = (settings: AttributeSettings, input = false) => {
             )
     }
 }
+
+export const fvModelToRaModel = () => {
+    const raModel = {}
+
+    return raModel
+}
