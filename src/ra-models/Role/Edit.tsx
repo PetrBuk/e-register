@@ -1,18 +1,16 @@
 import React from 'react'
-import {
-    Edit, EditProps, SimpleForm, TextInput,
-} from 'react-admin'
+import { Edit, SimpleForm, TextInput } from 'react-admin'
 
-const RoleEdit: React.FC<EditProps> = (props) => {
+const RoleEdit: React.FC = () => {
 
-    return (
-        <Edit {...props}>
-            <SimpleForm>
-                <TextInput source='name' />
-                <TextInput source='description' />
-            </SimpleForm>
-        </Edit>
-    )
+  return (
+    <Edit>
+      <SimpleForm>
+        <TextInput source='name' />
+        <TextInput source='description' />
+      </SimpleForm>
+    </Edit>
+  )
 }
 
 export default RoleEdit

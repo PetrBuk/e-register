@@ -1,69 +1,68 @@
-import React, { ComponentType, ReactElement, Suspense } from 'react'
-import { Resource as RaResource, ResourceProps, Loading, useTranslate, } from 'react-admin'
+import React, { Suspense } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import { ResourceProps, ResourceContextProvider, Loading } from 'react-admin'
 
-type Props = ResourceProps
+interface ResProps {
+  create: any,
+  edit: any,
+  list: any,
+  show: any,
+  name: string
+}
 
-const ShowTitle = ({ resource, record }: any) => {
-    return <span>
-        {resource + record ? `"${record.name ? record.name : record.id}"` : ''}
-    </span>
-};
+const Resource = (props: ResProps) => {
+  const { create: Create, edit: Edit, list: List, name, show: Show } = props
 
-const EditTitle = ({ resource, record }: any) => {
-    return <span>
-        Upravit {resource + record ? `"${record.name ? record.name : record.id}"` : ''}
-    </span>
-};
+  return (
+    <ResourceContextProvider value={name}>
+      <Routes>
+        {Create && (
+          <Route
+            path="create/*"
+            element={<Suspense fallback={<Loading />}><Create /></Suspense>}
+          />
+        )}
+        {Show && (
+          <Route
+            path=":id/show/*"
+            element={<Suspense fallback={<Loading />}><Show /></Suspense>}
+          />
+        )}
+        {Edit && (
+          <Route
+            path=":id/*"
+            element={<Suspense fallback={<Loading />}><Edit /></Suspense>}
+          />
+        )}
+        {List && (
+          <Route
+            path="/*"
+            element={<Suspense fallback={<Loading />}><List /></Suspense>}
+          />
+        )}
+      </Routes>
+    </ResourceContextProvider>
+  )
+}
 
-/**
- * Expects to receive React.lazy list, edit, show and create props which
- * should be rendered in Suspense
- * */
-const Resource: React.FC<Props> = React.memo(({
-    list,
-    edit,
-    show,
-    create,
-    name,
-    ...props
-}) => {
-    const translate = useTranslate();
-    const createSuspenseComponent = React.useCallback((
-        Component: ReactElement | ComponentType | undefined,
-        titleType: "list" | "edit" | "show" | "create" = "list") => {
-        const getTitle = () => {
-            switch (titleType) {
-                case "list":
-                    return translate(`resources.${name}.name`);
-                case "edit":
-                    return <EditTitle />
-                case "show":
-                    return <ShowTitle />
-                case "create":
-                    return `Vytvořit ${name}`;
-                default:
-                    return name;
-            }
-        };
-        return (compProps: any) => {
-            const Component = compProps.Component
-            if (Component === undefined) return null
-            return <Suspense fallback={<Loading />}>
-                <Component {...compProps} title={getTitle()} />
-            </Suspense>;
-        };
-    }, [ name, translate ])
+Resource.raName = 'Resource'
 
-    return (
-        <RaResource
-            list={createSuspenseComponent(list)}
-            edit={createSuspenseComponent(edit, 'edit')}
-            show={createSuspenseComponent(show, 'show')}
-            create={create ? createSuspenseComponent(create) : undefined}
-            name={name}
-            {...props}
-        />
-    )
+Resource.registerResource = ({
+  create,
+  edit,
+  icon,
+  list,
+  name,
+  options,
+  show,
+}: ResourceProps) => ({
+  name,
+  options,
+  hasList: !!list,
+  hasCreate: !!create,
+  hasEdit: !!edit,
+  hasShow: !!show,
+  icon,
 })
 
 export default Resource

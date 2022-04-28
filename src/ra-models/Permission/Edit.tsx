@@ -3,10 +3,10 @@ import {
     Edit, EditProps, SimpleForm, TextInput,
 } from 'react-admin'
 
-const PermissionEdit: React.FC<EditProps> = (props) => {
+const PermissionEdit: React.FC<EditProps> = () => {
 
     return (
-        <Edit {...props}>
+        <Edit>
             <SimpleForm>
                 <TextInput source='name' />
                 <TextInput source='description' />
