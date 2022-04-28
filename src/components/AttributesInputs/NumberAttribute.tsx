@@ -35,4 +35,4 @@ const NumberAttribute: React.FC<any> = (props: any) => {
     )
 }
 
-export default NumberAttribute;
+export default NumberAttribute

@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useField, useForm } from 'react-final-form'
 import { TextInput, SelectInput, useTranslate, Button } from 'react-admin'
-import { Dialog, DialogActions, DialogContent, DialogTitle, makeStyles } from '@material-ui/core'
-import { Tune, Close, Check } from '@material-ui/icons'
+import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material'
+import { makeStyles } from '@mui/styles'
+import { Tune, Close, Check } from '@mui/icons-material'
 
 import TextAttribute from './TextAttibute'
 import NumberAttribute from './NumberAttribute'
@@ -17,7 +18,7 @@ const useStyles = makeStyles({
         flexFlow: 'column'
     }
 })
-
+// ToDo: Get rid of react-final-form and props.record
 const AttributeInput: React.FC<any> = (props: any) => {
 
     const translate = useTranslate()

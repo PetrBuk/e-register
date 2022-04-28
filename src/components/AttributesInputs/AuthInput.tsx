@@ -4,10 +4,11 @@ import {
     ReferenceArrayField, SingleFieldList, ChipField
 } from 'react-admin'
 import {
-    makeStyles, Typography, Accordion,
+    Typography, Accordion,
     AccordionSummary, AccordionDetails
-} from '@material-ui/core'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+} from '@mui/material'
+import { makeStyles } from '@mui/styles'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 const useStyles = makeStyles({
     container: {
@@ -33,11 +34,11 @@ const AuthInput: React.FC<any> = (props: any) => {
     const translate = useTranslate()
     const classes = useStyles()
 
-    //To prevent 30 Reguest for rendering 30 Reference many inputs fetch the data with validUntil date
+    //To prevent 30 Reguest for rendering 30 Reference many inputs fetch the data with cache option
     const permissions = useGetList('Permission')
     const roles = useGetList('Role')
 
-    if (!permissions.loaded && !roles.loaded) {
+    if (!permissions.isSuccess && !roles.isSuccess) {
         return (
             <p>Loading</p>
         )
@@ -166,11 +167,11 @@ export const AuthField: React.FC<any> = (props) => {
     const translate = useTranslate()
     const classes = useStyles()
 
-    //To prevent 30 Reguest for rendering 30 Reference many inputs fetch the data with validUntil date
+    //To prevent 30 Reguest for rendering 30 Reference many inputs fetch the data with cache option
     const permissions = useGetList('Permission')
     const roles = useGetList('Role')
 
-    if (!permissions.loaded && !roles.loaded) {
+    if (!permissions.isSuccess && !roles.isSuccess) {
         return (
             <p>Loading</p>
         )

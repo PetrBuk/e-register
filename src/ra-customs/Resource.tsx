@@ -1,18 +1,18 @@
-import React, { ComponentType, Suspense } from 'react'
+import React, { ComponentType, ReactElement, Suspense } from 'react'
 import { Resource as RaResource, ResourceProps, Loading, useTranslate, } from 'react-admin'
 
-type Props = ResourceProps;
+type Props = ResourceProps
 
 const ShowTitle = ({ resource, record }: any) => {
     return <span>
         {resource + record ? `"${record.name ? record.name : record.id}"` : ''}
-    </span>;
+    </span>
 };
 
 const EditTitle = ({ resource, record }: any) => {
     return <span>
         Upravit {resource + record ? `"${record.name ? record.name : record.id}"` : ''}
-    </span>;
+    </span>
 };
 
 /**
@@ -29,7 +29,7 @@ const Resource: React.FC<Props> = React.memo(({
 }) => {
     const translate = useTranslate();
     const createSuspenseComponent = React.useCallback((
-        Component: ComponentType | undefined,
+        Component: ReactElement | ComponentType | undefined,
         titleType: "list" | "edit" | "show" | "create" = "list") => {
         const getTitle = () => {
             switch (titleType) {
@@ -46,12 +46,13 @@ const Resource: React.FC<Props> = React.memo(({
             }
         };
         return (compProps: any) => {
-            if (Component === undefined) return null;
+            const Component = compProps.Component
+            if (Component === undefined) return null
             return <Suspense fallback={<Loading />}>
                 <Component {...compProps} title={getTitle()} />
             </Suspense>;
         };
-    }, [ name, translate ]);
+    }, [ name, translate ])
 
     return (
         <RaResource

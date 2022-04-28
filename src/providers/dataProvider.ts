@@ -3,19 +3,19 @@ import axios from 'axios'
 
 const apiUrl = 'http://localhost:5000/api/'
 
-const staticResources = ['User', 'Role', 'Permission', 'ArticleSettings']
+const staticResources = ['User', 'Role', 'Permission', 'PossessionSettings']
 
 const getDbResource = (resource: string) => {
     console.log(resource)
     if (staticResources.includes(resource)) {
         return resource
-    } else return 'article'
+    } else return 'possession'
 }
 
 const dataProvider: DataProvider = {
     getList: (resource, params) => {
         return new Promise((resolve, reject) => {
-            if (getDbResource(resource) === 'article') {
+            if (getDbResource(resource) === 'possession') {
                 const { filter } = params
                 filter.typeField = resource
                 params.filter = filter
@@ -28,10 +28,6 @@ const dataProvider: DataProvider = {
                 withCredentials: true
             }).then((resp: any) => {
                 console.log('GET LIST:', resp)
-                const validUntil = new Date()
-                const duration = 5 * 60 * 1000
-                validUntil.setTime(validUntil.getTime() + duration)
-                resp.data.validUntil = validUntil
                 return resolve(resp.data)
             }).catch((err) => {
                 console.log(err)

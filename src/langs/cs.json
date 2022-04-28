@@ -24,7 +24,7 @@
                 "description": "Popis"
             }
         },
-        "ArticleSettings": {
+        "PossessionSettings": {
             "name": "Typy artiklů",
             "fields": {
                 "name": "Název",
@@ -90,7 +90,7 @@
             "addSettings": "Pokročilé nastavení"
         },
         "action": {
-            
+
         }
     },
     "ra.navigation.skip_nav": "Přeskočit k obsahu",

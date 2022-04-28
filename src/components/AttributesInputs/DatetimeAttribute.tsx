@@ -1,7 +1,7 @@
 import React from 'react'
 import { BooleanInput, SelectInput, DateTimeInput } from 'react-admin'
 import { useField, useForm } from 'react-final-form'
-
+//ToDo: Get rid of react-final-form
 const DatetimeAttribute: React.FC<any> = (props: any) => {
 
     const form = useForm()
