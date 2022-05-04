@@ -19,10 +19,6 @@ export type AttributeSettings = {
 export type ArticleTypeSettings = {
     name: string,
     attributes: AttributeSettings[],
-    permissionRequirements?: {
-        requiredRole?: string[],
-        requiredPermission?: string[]
-    }
 }
 
 export type CommonAttributeTypeSettings = {
@@ -60,7 +56,7 @@ const pitiTypeSetting: ArticleTypeSettings = {
                 format: 'DD_MM_YYYY'
             }
         }, {
-            name: 'vyrazeno', 
+            name: 'vyrazeno',
             typeField: AttributeType.Boolean,
             settings: {}
         }
@@ -93,7 +89,7 @@ const startTypeSetting: ArticleTypeSettings = {
                 format: 'DD.MM.YYYY'
             }
         }, {
-            name: 'vyrazeno', 
+            name: 'vyrazeno',
             typeField: AttributeType.Boolean,
             settings: {
                 validation: {

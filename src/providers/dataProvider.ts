@@ -6,7 +6,6 @@ const apiUrl = 'http://localhost:5000/api/'
 const staticResources = ['User', 'Role', 'Permission', 'PossessionSettings']
 
 const getDbResource = (resource: string) => {
-    console.log(resource)
     if (staticResources.includes(resource)) {
         return resource
     } else return 'possession'

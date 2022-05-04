@@ -40,7 +40,7 @@
             }
         }
     },
-    "createPossession": {
+    "createType": {
         "attributes": {
             "name": "Název",
             "type": "Typ"

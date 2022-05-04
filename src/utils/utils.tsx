@@ -12,10 +12,9 @@ export const getListComponent = (settings: ArticleTypeSettings) => {
       getField(obj)
     )
   })
-
-  return (props: any) => {
+  return () => {
     return (
-      <List {...props}>
+      <List>
         <Datagrid rowClick='show'>
           {fields}
         </Datagrid>
@@ -30,9 +29,9 @@ export const getShowComponent = (settings: ArticleTypeSettings) => {
       getField(obj)
     )
   })
-  return (props: any) => {
+  return () => {
     return (
-      <Show {...props}>
+      <Show>
         <SimpleShowLayout>
           {fields}
         </SimpleShowLayout>
@@ -47,9 +46,9 @@ export const getCreateComponent = (settings: ArticleTypeSettings) => {
       getField(obj, true)
     )
   })
-  return (props: any) => {
+  return () => {
     return (
-      <Create {...props}>
+      <Create>
         <SimpleForm>
           {fields}
         </SimpleForm>
@@ -64,9 +63,9 @@ export const getEditComponent = (settings: ArticleTypeSettings) => {
       getField(obj, true)
     )
   })
-  return (props: any) => {
+  return () => {
     return (
-      <Edit {...props}>
+      <Edit>
         <SimpleForm>
           {fields}
         </SimpleForm>

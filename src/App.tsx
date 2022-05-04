@@ -42,7 +42,6 @@ const App: React.FC = () => {
       withCredentials: true
     })
       .then(resp => {
-        console.log(resp)
         setArticleSettings(resp.data.data)
       })
   }, [])
@@ -68,6 +67,7 @@ const App: React.FC = () => {
       queryClient={queryClient}
       dashboard={Dashboard}
       layout={Layout}
+      requireAuth
     >
       {resources}
       <Resource {...userProps} />

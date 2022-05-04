@@ -8,6 +8,7 @@ const PossessionSettingsCreate: React.FC = () => {
   const transform = (record: any) => {
     const { attributes, ...newRecord } = record
     const newAttributes = [...attributes]
+    // ToDo: rename the name without spaces and czechisms
     newRecord.name = record.displayName;
     for (let attribute of newAttributes) {
       attribute.name = attribute.displayName

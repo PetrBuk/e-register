@@ -28,6 +28,7 @@ const AttributeInput: React.FC<any> = (props: any) => {
   const { setValue } = useForm()
 
   const field = useWatch({name: props.source})
+  console.log(field, record, props)
 
   const [open, setOpen] = useState(false)
 
@@ -51,11 +52,11 @@ const AttributeInput: React.FC<any> = (props: any) => {
         <DialogContent className={classes.wrapper}>
           <TextInput {...props} source={`${props.source}.displayName`} label='createType.attributes.name' required />
           <TypeInput {...props} source={`${props.source}.typeField`} label='createType.attributes.type' required />
-          {field.input.value.typeField === 'string' && <TextAttribute {...props} source={`${props.source}.settings`} />}
-          {field.input.value.typeField === 'number' && <NumberAttribute {...props} source={`${props.source}.settings`} />}
-          {field.input.value.typeField === 'boolean' && <BooleanAttribute {...props} source={`${props.source}.settings`} />}
-          {field.input.value.typeField === 'datetime' && <DatetimeAttribute {...props} source={`${props.source}.settings`} />}
-          {field.input.value.typeField === 'reference' && <ReferenceAttribute {...props} source={`${props.source}.settings`} />}
+          {field && field.typeField === 'string' && <TextAttribute {...props} source={`${props.source}.settings`} />}
+          {field && field.typeField === 'number' && <NumberAttribute {...props} source={`${props.source}.settings`} />}
+          {field && field.typeField === 'boolean' && <BooleanAttribute {...props} source={`${props.source}.settings`} />}
+          {field && field.typeField === 'datetime' && <DatetimeAttribute {...props} source={`${props.source}.settings`} />}
+          {field && field.typeField === 'reference' && <ReferenceAttribute {...props} source={`${props.source}.settings`} />}
           <AuthInput type='attribute' />
         </DialogContent>
         <DialogActions>
@@ -82,7 +83,7 @@ const TypeInput = (props: any) => {
     { id: 'datetime', name: 'Datetime' },
     { id: 'reference', name: 'Reference' }
   ]
-
+  console.log("HUH?")
   return (
     <SelectInput {...props} choices={typeChoices} />
   )
