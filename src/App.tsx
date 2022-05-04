@@ -6,7 +6,7 @@ import axios from 'axios'
 import userProps from './ra-models/User'
 import permissionProps from './ra-models/Permission'
 import roleProps from './ra-models/Role'
-import typeSettingsProps from './ra-models/ArticleSettings'
+import possessionSettingsProps from './ra-models/PossessionSettings'
 
 import Dashboard from './ra-customs/Dashboard'
 import Resource from './ra-customs/Resource'
@@ -73,7 +73,7 @@ const App: React.FC = () => {
       <Resource {...userProps} />
       <Resource {...permissionProps} />
       <Resource {...roleProps} />
-      <Resource {...typeSettingsProps} />
+      <Resource {...possessionSettingsProps} />
     </Admin>
   )
 }

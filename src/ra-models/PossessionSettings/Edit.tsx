@@ -4,9 +4,8 @@ import {
 } from 'react-admin'
 
 import AttributeInput from '../../components/AttributesInputs/AttributeInput'
-import AuthInput from '../../components/AttributesInputs/AuthInput'
 
-const ArticleSettingsEdit: React.FC = () => {
+const PossessionSettingsEdit: React.FC = () => {
 
   const transform = (record: any) => {
     return record
@@ -21,10 +20,9 @@ const ArticleSettingsEdit: React.FC = () => {
             <AttributeInput />
           </SimpleFormIterator>
         </ArrayInput>
-        <AuthInput source='auth' type='type' />
       </SimpleForm>
     </Edit>
   )
 }
 
-export default ArticleSettingsEdit
+export default PossessionSettingsEdit

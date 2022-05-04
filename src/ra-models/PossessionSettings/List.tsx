@@ -1,7 +1,7 @@
 import React from 'react'
 import { List, Datagrid, TextField } from 'react-admin'
 
-const ArticleSettingsList: React.FC = () => {
+const PossessionSettingsList: React.FC = () => {
   return <List>
     <Datagrid rowClick='show'>
       <TextField source='id' />
@@ -11,4 +11,4 @@ const ArticleSettingsList: React.FC = () => {
   </List>
 }
 
-export default ArticleSettingsList
+export default PossessionSettingsList

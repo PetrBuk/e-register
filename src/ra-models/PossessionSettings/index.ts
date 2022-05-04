@@ -6,7 +6,7 @@ const LazyEdit = React.lazy(() => import('./Edit'))
 const LazyShow = React.lazy(() => import('./Show'))
 const LazyList = React.lazy(() => import('./List'))
 
-const articleSettingsProps = {
+const possessionSettingsProps = {
     name: 'PossessionSettings',
     icon: UsersIcon,
     list: LazyList,
@@ -15,4 +15,4 @@ const articleSettingsProps = {
     edit: LazyEdit
 }
 
-export default articleSettingsProps
+export default possessionSettingsProps
