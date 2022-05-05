@@ -12,6 +12,7 @@ export enum AttributeType {
 
 export type AttributeSettings = {
     name: string,
+    displayName: string,
     typeField: AttributeType,
     settings: { [x: string]: any }
 }
@@ -35,6 +36,7 @@ const pitiTypeSetting: ArticleTypeSettings = {
     attributes: [
         {
             name: 'nazev',
+            displayName: 'Název',
             typeField: AttributeType.String,
             settings: {
                 validation: {
@@ -43,6 +45,7 @@ const pitiTypeSetting: ArticleTypeSettings = {
             }
         }, {
             name: 'pocet',
+            displayName: 'Počet',
             typeField: AttributeType.Number,
             settings: {
                 validation: {
@@ -51,12 +54,14 @@ const pitiTypeSetting: ArticleTypeSettings = {
             }
         }, {
             name: 'datum_porizeni',
+            displayName: 'Datum pořízení',
             typeField: AttributeType.Datetime,
             settings: {
                 format: 'DD_MM_YYYY'
             }
         }, {
             name: 'vyrazeno',
+            displayName: 'Vyřazeno',
             typeField: AttributeType.Boolean,
             settings: {}
         }
@@ -68,6 +73,7 @@ const startTypeSetting: ArticleTypeSettings = {
     attributes: [
         {
             name: 'nazev',
+            displayName: 'Název',
             typeField: AttributeType.String,
             settings: {
                 validation: {
@@ -76,6 +82,7 @@ const startTypeSetting: ArticleTypeSettings = {
             }
         }, {
             name: 'pocet',
+            displayName: 'počet',
             typeField: AttributeType.Number,
             settings: {
                 validation: {
@@ -84,12 +91,14 @@ const startTypeSetting: ArticleTypeSettings = {
             }
         }, {
             name: 'datum_porizeni',
+            displayName: 'Datum přízení',
             typeField: AttributeType.Datetime,
             settings: {
                 format: 'DD.MM.YYYY'
             }
         }, {
             name: 'vyrazeno',
+            displayName: 'Vyřazeno',
             typeField: AttributeType.Boolean,
             settings: {
                 validation: {

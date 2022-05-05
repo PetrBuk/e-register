@@ -28,7 +28,6 @@ const AttributeInput: React.FC<any> = (props: any) => {
   const { setValue } = useForm()
 
   const field = useWatch({name: props.source})
-  console.log(field, record, props)
 
   const [open, setOpen] = useState(false)
 
@@ -83,7 +82,7 @@ const TypeInput = (props: any) => {
     { id: 'datetime', name: 'Datetime' },
     { id: 'reference', name: 'Reference' }
   ]
-  console.log("HUH?")
+
   return (
     <SelectInput {...props} choices={typeChoices} />
   )

@@ -79,57 +79,82 @@ const getField = (settings: AttributeSettings, input = false) => {
     case AttributeType.String:
       return (
         input ?
-          <TextInput key={settings.name} source={settings.name} multiline={settings?.settings?.richtext} /> :
-          <TextField key={settings.name} source={settings.name} />
+          <TextInput
+            key={settings.name}
+            source={settings.name}
+            multiline={settings?.settings?.richtext}
+            label={settings.displayName}
+          /> :
+          <TextField
+            key={settings.name}
+            source={settings.name}
+            label={settings.displayName}
+          />
       );
     case AttributeType.Number:
       return (
-        input ? <NumberInput key={settings.name} source={settings.name} /> : <NumberField key={settings.name} source={settings.name} />
+        input ? <NumberInput key={settings.name} source={settings.name} label={settings.displayName} /> :
+          <NumberField key={settings.name} source={settings.name} label={settings.displayName} />
       );
     case AttributeType.Boolean:
       return (
-        input ? <BooleanInput key={settings.name} source={settings.name} /> : <BooleanField key={settings.name} source={settings.name} />
+        input ? <BooleanInput key={settings.name} source={settings.name} /> :
+          <BooleanField key={settings.name} source={settings.name} label={settings.displayName} />
       );
     case AttributeType.Datetime:
       return (
-        input ? <DateTimeInput key={settings.name} source={settings.name} /> : <DateField key={settings.name} source={settings.name} />
+        input ? <DateTimeInput key={settings.name} source={settings.name} /> :
+          <DateField key={settings.name} source={settings.name} label={settings.displayName} />
       );
     case AttributeType.Reference:
       if (input) {
         return (
           settings.settings.multiple ?
             <ReferenceArrayInput
-              reference={settings.settings?.reference}
+              reference={normalizeName(settings.settings?.reference)}
               key={settings.name}
               source={settings.name}
+              label={settings.displayName}
             >
               <SelectArrayInput optionText={settings.settings?.referenceField || 'id'} />
             </ReferenceArrayInput> :
-            <ReferenceInput reference={settings.settings?.reference} key={settings.name} source={settings.name}>
-              <SelectInput optionText={settings.settings?.referenceField || 'id'} />
+            <ReferenceInput
+              reference={normalizeName(settings.settings?.reference)}
+              key={settings.name}
+              source={settings.name}
+              label={settings.displayName}
+            >
+              <SelectInput optionText={normalizeName(settings.settings?.referenceField) || 'id'} />
             </ReferenceInput>
         )
       } else {
         return (
           settings.settings.multiple ?
             <ReferenceManyField
-              reference={settings.settings?.reference}
+              reference={normalizeName(settings.settings?.reference)}
               key={settings.name}
               source={settings.name}
               target={settings.name}
+              label={settings.displayName}
             >
               <SingleFieldList>
-                <ChipField source={settings.settings?.referenceField || 'id'} />
+                <ChipField source={normalizeName(settings.settings?.referenceField) || 'id'} />
               </SingleFieldList>
             </ReferenceManyField> :
-            <ReferenceField key={settings.name} source={settings.name} reference={settings.settings?.reference}>
-              <TextField source={settings.settings?.referenceField || 'id'} />
+            <ReferenceField
+              key={settings.name}
+              source={settings.name}
+              reference={normalizeName(settings.settings?.reference)}
+              label={settings.displayName}
+            >
+              <TextField source={normalizeName(settings.settings?.referenceField) || 'id'} />
             </ReferenceField>
         )
       }
     default:
       return (
-        input ? <TextInput key={settings.name} source={settings.name} /> : <TextField key={settings.name} source={settings.name} />
+        input ? <TextInput key={settings.name} source={settings.name} label={settings.displayName} /> :
+          <TextField key={settings.name} source={settings.name} label={settings.displayName} />
       )
   }
 }
@@ -138,4 +163,13 @@ export const fvModelToRaModel = () => {
   const raModel = {}
 
   return raModel
+}
+
+export const normalizeName = (name: string) => {
+  if (name) {
+    const normalizedName = name.normalize('NFD').replace(/\p{Diacritic}/gu, '')
+    const trimmedName = normalizedName.replace(/\s/g, '')
+    return trimmedName.toLowerCase()
+  }
+  return ''
 }

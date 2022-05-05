@@ -4,11 +4,19 @@ import {
 } from 'react-admin'
 
 import AttributeInput from '../../components/AttributesInputs/AttributeInput'
+import { normalizeName } from '../../utils/utils'
 
 const PossessionSettingsEdit: React.FC = () => {
 
   const transform = (record: any) => {
-    return record
+    const { attributes, ...newRecord } = record
+    const newAttributes = [...attributes]
+    newRecord.name = normalizeName(record.displayName)
+    for (let attribute of newAttributes) {
+      attribute.name = normalizeName(attribute.displayName)
+    }
+    newRecord.attributes = newAttributes
+    return newRecord
   }
 
   return (

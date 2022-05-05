@@ -18,7 +18,7 @@ const ReferenceAttribute: React.FC<any> = (props: any) => {
         {...props}
         source={`${props.source}.multiple`}
         label='createType.settings.multiple'
-        defaultChecked={false}
+        defaultValue={false}
       />
       <BooleanInput
         {...props}

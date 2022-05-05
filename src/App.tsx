@@ -51,6 +51,7 @@ const App: React.FC = () => {
       <RaResource
         key={obj.name}
         name={obj.name}
+        options={{ label: obj.displayName }}
         list={getListComponent(obj)}
         show={getShowComponent(obj)}
         edit={getEditComponent(obj)}
