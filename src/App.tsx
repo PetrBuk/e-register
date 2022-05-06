@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Admin, Resource as RaResource } from 'react-admin'
 import { QueryClient } from 'react-query'
 import axios from 'axios'
@@ -22,43 +22,56 @@ import { getCreateComponent, getEditComponent, getListComponent, getShowComponen
 
 const apiUrl = 'http://localhost:5000/api/'
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1 * 60 * 1000, // 1 minute
+    },
+  },
+})
+
+const staticResources = [
+  <Resource {...userProps} />,
+  <Resource {...permissionProps} />,
+  <Resource {...roleProps} />,
+  <Resource {...possessionSettingsProps} />
+]
+
 const App: React.FC = () => {
 
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 1 * 60 * 1000, // 1 minute
-      },
-    },
-  })
-
-  const [articleSettings, setArticleSettings] = useState([])
-
-  useEffect(() => {
-    axios.get(apiUrl + 'possessionSettings', {
+  const getPossessionResources = ( permissions: any ) => {
+    // ToDo: Check permissions here to fetch correct resources
+    return axios.get(apiUrl + 'possessionSettings', {
       headers: {
-        //"Access-Control-Expose-Headers": "Content-Range"
+        //'Access-Control-Expose-Headers': 'Content-Range' // This couses CORS block
       },
       withCredentials: true
-    })
-      .then(resp => {
-        setArticleSettings(resp.data.data)
-      })
-  }, [])
+    }).then( res => {
 
-  const resources = articleSettings.map((obj: any) => {
-    return (
-      <RaResource
-        key={obj.name}
-        name={obj.name}
-        options={{ label: obj.displayName }}
-        list={getListComponent(obj)}
-        show={getShowComponent(obj)}
-        edit={getEditComponent(obj)}
-        create={getCreateComponent(obj)}
-      />
-    )
-  })
+      const possessionSettings = res.data.data
+
+      if (possessionSettings.length) {
+        const possessionResources = possessionSettings.map((obj: any) => {
+          return (
+            <RaResource
+              key={obj.name}
+              name={obj.name}
+              options={{ label: obj.displayName }}
+              list={getListComponent(obj)}
+              show={getShowComponent(obj)}
+              edit={getEditComponent(obj)}
+              create={getCreateComponent(obj)}
+            />
+          )
+        })
+        return [...staticResources, ...possessionResources]
+      }
+      return staticResources
+    }).catch((err) => {
+      console.log(err)
+      return staticResources
+    })
+  }
 
   return (
     <Admin
@@ -70,11 +83,7 @@ const App: React.FC = () => {
       layout={Layout}
       requireAuth
     >
-      {resources}
-      <Resource {...userProps} />
-      <Resource {...permissionProps} />
-      <Resource {...roleProps} />
-      <Resource {...possessionSettingsProps} />
+      {getPossessionResources}
     </Admin>
   )
 }
