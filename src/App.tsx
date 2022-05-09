@@ -19,6 +19,7 @@ import i18nProvider from './providers/I18nProvider'
 import './App.css'
 
 import { getCreateComponent, getEditComponent, getListComponent, getShowComponent } from './utils/utils'
+import { ledgerResources } from './utils/schemaToModel'
 
 const apiUrl = 'http://localhost:5000/api/'
 
@@ -34,7 +35,8 @@ const staticResources = [
   <Resource {...userProps} />,
   <Resource {...permissionProps} />,
   <Resource {...roleProps} />,
-  <Resource {...possessionSettingsProps} />
+  <Resource {...possessionSettingsProps} />,
+  ...ledgerResources
 ]
 
 const App: React.FC = () => {

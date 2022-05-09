@@ -159,12 +159,6 @@ const getField = (settings: AttributeSettings, input = false) => {
   }
 }
 
-export const fvModelToRaModel = () => {
-  const raModel = {}
-
-  return raModel
-}
-
 export const normalizeName = (name: string) => {
   if (name) {
     const normalizedName = name.normalize('NFD').replace(/\p{Diacritic}/gu, '')

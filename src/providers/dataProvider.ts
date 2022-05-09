@@ -3,18 +3,19 @@ import axios from 'axios'
 
 const apiUrl = 'http://localhost:5000/api/'
 
-const staticResources = ['User', 'Role', 'Permission', 'PossessionSettings']
+const staticResources = ['User', 'Role', 'Permission', 'PossessionSettings', 'Ledger', 'LedgerClass', 'Transaction', 'TransactionTemplate']
 
 const getDbResource = (resource: string) => {
+    console.log(resource)
     if (staticResources.includes(resource)) {
         return resource
-    } else return 'possession'
+    } else return 'Possession'
 }
 
 const dataProvider: DataProvider = {
     getList: (resource, params) => {
         return new Promise((resolve, reject) => {
-            if (getDbResource(resource) === 'possession') {
+            if (getDbResource(resource) === 'Possession') {
                 const { filter } = params
                 filter.typeField = resource
                 params.filter = filter
@@ -50,6 +51,7 @@ const dataProvider: DataProvider = {
     },
     getMany: (resource, params) => {
         return new Promise(async (resolve, reject) => {
+            console.log(params)
             axios.get(apiUrl + getDbResource(resource) + '/', {
                 withCredentials: true,
                 params: {
